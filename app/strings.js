@@ -24,7 +24,7 @@ stringsAnswers = {
       let regexReplace = new RegExp(`${letter}+`);
       let replacer = [];
       let count = 0;
-      while(count < amout) {
+      while(count < amount) {
         replacer.push(letter);
         count++;
       }
@@ -43,7 +43,7 @@ stringsAnswers = {
    * @returns {String} The original string of text str reversed.
    */
   reverseString: function reverseString(str) {
-    let arr = str.splot("");
+    let arr = str.split("");
     let reverseArr = arr.reverse();
     let joinArr = reverseArr.join("");
     return joinArr

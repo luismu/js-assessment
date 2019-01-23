@@ -30,6 +30,7 @@ asyncAnswers = {
         req.open('GET', url);
         req.onload = function() {
           if (req.status == 200) {
+    
             resolve(req.response);
           }
           else {
@@ -43,5 +44,6 @@ asyncAnswers = {
         req.send();
       });
 
+      
   },
 };

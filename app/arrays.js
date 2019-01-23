@@ -40,11 +40,7 @@ arraysAnswers = {
    * @returns {Number[]} A new array containing all numbers from arr except item.
    */
   remove: function remove(arr, item) {
-    var index = arr.indexOf(item);
-    if (index > -1) {
-       arr.splice(index, 1);
-      return arr
-    }
+    return arr.filter(element => element != item)
 
 
   },
@@ -92,7 +88,7 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with the first element item removed.
    */
   curtail: function curtail(arr) {
-    arr.shift(item)
+    arr.shift()
     return arr
   },
 
