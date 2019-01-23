@@ -1,3 +1,5 @@
+import { dirname } from "path";
+
 recursionAnswers = {
   /**
    * List the files in a given directory, of a filesystem described by data.
@@ -18,6 +20,25 @@ recursionAnswers = {
    */
   listFiles: function listFiles(data, dirName) {
 
+    let files = [];
+    let allowed = [];
+    
+
+    checkDirectories = (obj, dirName) => {
+      if(dirName){
+        if(obj.dirName === dirname || allowed.includes(obj.dirName)){
+          obj.subDirs.forEach(dir => allowed.push(dir.dirName));
+          files = files.concat(obj.files);
+        }
+      }else{
+        files = files.concat(obj.files);
+      }
+      obj.subDirs.length > 0 && obj.subDirs.forEach(dir => checkDirectories(dir, dirName));
+    }
+
+    checkDirectories(data, dirName);
+
+    return files
   },
 
   /**
@@ -30,6 +51,6 @@ recursionAnswers = {
    * @returns {Number} The nth fibonacci number
    */
   fibonacci: function fibonacci(n) {
-
+    
   },
 };

@@ -10,7 +10,28 @@ stringsAnswers = {
    * @returns {String} A string with no more than amount number of repeated letters.
    */
   reduceString: function reduceString(str, amount) {
+    let repeatedLetters = []
+    let stringReduced = str;
 
+    const letterArr = Array.from(str).filter(letter => {
+      if(repeatedLetters.includes(letter)) return false;
+      repeatedLetters.push(letter);
+      return true; 
+    })
+
+    letterArr.forEach(letter => {
+      let regex = new RegExp(`${letter}{${amount}}`);
+      let regexReplace = new RegExp(`${letter}+`);
+      let replacer = [];
+      let count = 0;
+      while(count < amout) {
+        replacer.push(letter);
+        count++;
+      }
+      replacer = replacer.join('');
+      if(regex.test(str)) stringReduced = stringReduced.replace(regexReplace, replacer);
+    })
+    return stringReduced
   },
 
   /**
@@ -22,6 +43,9 @@ stringsAnswers = {
    * @returns {String} The original string of text str reversed.
    */
   reverseString: function reverseString(str) {
-
+    let arr = str.splot("");
+    let reverseArr = arr.reverse();
+    let joinArr = reverseArr.join("");
+    return joinArr
   },
 };

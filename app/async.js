@@ -1,3 +1,4 @@
+
 asyncAnswers = {
   /**
    * Asynchronously returns a value via a promise. Example:
@@ -7,7 +8,9 @@ asyncAnswers = {
    * @returns {then: function} A promise like object containing a then property.
    */
   async: function async(value) {
-
+    return new Promise ((resolve, reject) => {
+      resolve(value)
+    });
   },
 
   /**
@@ -20,7 +23,25 @@ asyncAnswers = {
    * @param {String} url - a valid url
    * @returns {then: function} A promise like object containing a then property.
    */
-  manipulateRemoteData: function manipulateRemoteData(url) {
+  manipulateRemoteData:  function manipulateRemoteData(url) {
+      return new Promise(function(resolve, reject) {
+        
+        var req = new XMLHttpRequest();
+        req.open('GET', url);
+        req.onload = function() {
+          if (req.status == 200) {
+            resolve(req.response);
+          }
+          else {
+            reject(Error(req.statusText));
+          }
+        };
+    
+        req.onerror = function() {
+          reject(Error("Network Error"));
+        };
+        req.send();
+      });
 
   },
 };
